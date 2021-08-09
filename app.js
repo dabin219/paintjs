@@ -4,15 +4,16 @@ const colors = document.getElementsByClassName("jsColor");
 const range = document.getElementById("jsRange");
 const mode = document.getElementById("jsMode");
 const saveBtn = document.getElementById("jsSave");
+const resetBtn = document.getElementById("jsReset");
 
-const INITIAL_COLOR = "#2c2c2c"
+const INITIAL_COLOR = "black"
 
 canvas.width = document.getElementsByClassName("canvas")[0].offsetWidth;
 canvas.height = document.getElementsByClassName("canvas")[0].offsetHeight;
 
 
-ctx.fillstyle = "white";
-ctx.fillRect(0, 0, 700, 700);
+ctx.fillStyle = "white";
+ctx.fillRect(0, 0, canvas.width, canvas.height);
 ctx.strokeStyle = INITIAL_COLOR;
 ctx.fillStyle = INITIAL_COLOR;
 ctx.lineWidth = 2.5;
@@ -79,6 +80,11 @@ function handleSaveClick(){
     link.click();
 }
 
+function handleResetClick(){
+    ctx.fillStyle = "white"
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
 if(canvas){
     canvas.addEventListener("mousemove", onMouseMove); 
     canvas.addEventListener("mousedown", startPainting);
@@ -100,4 +106,8 @@ if(mode){
 
 if(saveBtn){
     saveBtn.addEventListener("click", handleSaveClick)
+}
+
+if(resetBtn){
+    resetBtn.addEventListener("click", handleResetClick)
 }
